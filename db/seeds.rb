@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+avatar  = File.open(File.join(Rails.root, '/public/images/avatar.jpg'))
+User.create!(name:  "Example User",
+  email: "example@framgia.ph",
+  password:              "framgia",
+  password_confirmation: "framgia",
+  avatar: avatar)
+
+99.times do |n|
+name  = Faker::Name.name
+email = "example-#{n+1}@framgia.ph"
+password = "password"
+User.create!(name:  name,
+    email: email,
+    password:              password,
+    password_confirmation: password,
+    avatar: avatar)
+end

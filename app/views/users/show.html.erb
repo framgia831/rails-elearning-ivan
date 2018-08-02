@@ -1,0 +1,27 @@
+<div class="container ">
+    <% if flash[:notice] %>
+        <div class="alert alert-success center">
+            <%= notice %>
+        </div>
+    <% end %>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <center><%= user_avatar(@user,'profile-avatar') %><center>
+                    <h4 class="text-center"><%= @user.name %></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header">
+                    <h6>ACTIVITY FEED</h6>
+                </div>
+                <div class="card-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

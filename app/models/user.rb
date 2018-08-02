@@ -7,8 +7,10 @@ class User < ApplicationRecord
                     length: { maximum: 50 }, 
                     format: { with: VALID_EMAIL_REGEX }, 
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_secure_password
+
+  mount_uploader :avatar, AvatarUploader
 
   def downcase_email
     self.email = email.downcase
