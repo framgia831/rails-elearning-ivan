@@ -6,10 +6,22 @@
     <% end %>
     <div class="row">
         <div class="col-lg-3">
-            <div class="card">
+            <div class="card mb-5">
                 <div class="card-body">
-                    <center><%= user_avatar(@user,'profile-avatar') %><center>
-                    <h4 class="text-center"><%= @user.name %></h4>
+                    <center><%= user_avatar(@user,'profile-avatar') %>
+                        <h4 class="text-center"><%= @user.name %></h4>
+                        <small class="text-muted"><%= @user.email %></small>
+                        <% if current_user?(@user) %>
+                            <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: 'btn btn-info' %>
+                        <% end %>
+                        <div class="btn btn-info text-white mt-3">
+                            <h6>#</h6>
+                            <small>Words learned</small>
+                        </div>
+                        <%= render 'shared/user_stats', user: @user %>
+                        
+                        
+                    </center>
                 </div>
             </div>
         </div>
