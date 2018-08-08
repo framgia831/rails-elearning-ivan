@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row"> 
+        <div class="col-lg-6">
+            <h2 class="text-left">Users</h2>
+        </div>
+        <div class="col-lg-6">
+            <%= form_tag(users_path, method: :get, class: 'form-inline pull-right' ) do %>
+                <div class="position-relative">
+                    <%= text_field_tag :search_user, params[:search_user],    class: 'search-field form-control mr-2',
+                                                            type: 'search',
+                                                            placeholder: 'Search users' %> 
+                    <%= button_tag(type: 'submit', class: 'btn btn-info') do %>
+                        <span><i class="fa fa-search"></i> Search</span>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <% @users.each do |user| %>
+            <div class="col-lg-6">
+                <div class="card text-white bg-light mb-3">
+                    <section>
+                        <%= user_avatar(user,'profile-avatar') %>
+                        <%= link_to user.name, user_path(user) %>
+                        <% unless current_user?(user) %>
+                            <%= render partial: 'follow_form', locals: { user: user } %>
+                        <% end %>
+                    </section>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <span class="center"><%= paginate @users, window: 1 %></span>
+</div>

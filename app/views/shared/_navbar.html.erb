@@ -20,24 +20,33 @@
                     <%= link_to "Categories", '#', class: 'nav-link' %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Members", '#', class: 'nav-link' %>
+                    <%= link_to "Members", users_path, class: 'nav-link' %>
                 </li>
                 <% if logged_in? %>
                     <li class="nav-item dropdown">
-                        <%= link_to current_user.name, '#',    class: 'nav-link dropdown-toggle', 
-                                                        id: 'navbarDropdown', 
-                                                        role: 'button',
-                                                        data: { toggle: 'dropdown' },
-                                                        aria: { haspopup: 'true', expanded: 'false' }
-                        %>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%= link_to user_avatar(current_user,'thumb-avatar'), '#',     
+                                            class: 'nav-link dropdown-toggle', 
+                                            id: 'navbarDropdown', 
+                                            role: 'button',
+                                            data: { toggle: 'dropdown' },
+                                            aria: { haspopup: 'true', expanded: 'false' } %>
+                                  
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <span class="dropdown-item-text">Signed in as <br><strong><%= current_user.name %></strong></span>
+                            <div class="dropdown-divider"></div>
                             <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
                             <%= link_to "Settings", edit_user_path(current_user), class: 'dropdown-item' %>
                             <%= link_to "Logout", logout_path,  method: :delete, 
                                                                 class: 'dropdown-item' %>
                     
+<<<<<<< HEAD
+                            
+                            <% if current_user.admin? %>
+                                <div class="dropdown-divider"></div>
+=======
                             <div class="dropdown-divider"></div>
                             <% if current_user.admin? %>
+>>>>>>> d02abb19a36d235532ee6ae9be242b4e05ec60a5
                                 <%= link_to "Manage Categories", '#', class: 'dropdown-item' %>
                             <% end %>
                         </div>
