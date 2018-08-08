@@ -39,9 +39,14 @@
                             <%= link_to "Logout", logout_path,  method: :delete, 
                                                                 class: 'dropdown-item' %>
                     
+<<<<<<< HEAD
                             
                             <% if current_user.admin? %>
                                 <div class="dropdown-divider"></div>
+=======
+                            <div class="dropdown-divider"></div>
+                            <% if current_user.admin? %>
+>>>>>>> d02abb19a36d235532ee6ae9be242b4e05ec60a5
                                 <%= link_to "Manage Categories", '#', class: 'dropdown-item' %>
                             <% end %>
                         </div>

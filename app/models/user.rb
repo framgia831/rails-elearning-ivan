@@ -34,6 +34,7 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+<<<<<<< HEAD
   def follow(user)
     following << user
   end
@@ -46,4 +47,6 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
+=======
+>>>>>>> d02abb19a36d235532ee6ae9be242b4e05ec60a5
 end
