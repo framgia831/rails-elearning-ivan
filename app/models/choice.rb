@@ -3,7 +3,7 @@ class Choice < ApplicationRecord
   # validate :check_choice
 
   validates :content, presence: true, length: { maximum: 20 }
-  validates :correct, presence: true
+
   # def check_choice
   #   choices = correct.collect { |c| c.correct || nil }
   #   choice = choices.compact
