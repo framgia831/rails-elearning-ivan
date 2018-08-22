@@ -1,4 +1,9 @@
 <div class="container mt-4">
+    <% if flash[:notice] %>
+        <div class="alert alert-success">
+            <%= notice %>
+        </div>
+    <% end %>
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -6,7 +11,7 @@
                     <h3>Admin | Categories</h3>
                 </div>
                 <div class="col-lg-6 text-right">
-                    <%= link_to "Add Word", new_admin_category_word_path, class: 'btn btn-info' %>
+                    <%= link_to "Add Word", new_admin_category_word_path(category_id: @category.id), class: 'btn btn-info' %>
                     <%= link_to "Back", admin_categories_path, class: 'btn btn-link' %>
                 </div>
             </div>
@@ -22,14 +27,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <%= link_to "Edit", '#', class: 'btn btn-outline-info' %>
-                        <%= link_to "Remove", '#' , class: 'btn btn-outline-danger' %>
-                    </td>
-                </tr>
+                <% @word.each do |word| %> 
+                    <tr>
+                        <td><%= word.content %></td>
+                        <td><%= word.correct_choice.content%></td>
+                        <td>
+                            <%= link_to "Edit", edit_admin_category_word_path(category_id: @category.id, id: word.id), class: 'btn btn-outline-info' %>
+                            <%= link_to "Remove", admin_category_word_path(@category, word), method: :delete , class: 'btn btn-outline-danger' %>
+                        </td>
+                    </tr>
+                <% end %>
             </tbody>
         </table>
     </div>

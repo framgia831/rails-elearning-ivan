@@ -17,3 +17,12 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+//   $('input[type="checkbox"]').on('change', function() {
+//     $('input[type="checkbox"]').not(this).prop('checked', false);
+//  });
+  $('input:checkbox').click(function() {
+      $('input:checkbox').not(this).prop('checked', false);
+  });
+});
