@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
+  get '/dashboard', to: 'static_pages#dashboard'
+
   resources :users
   resources :relationships
   resources :categories, only: [:index]

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
       if @user && @user.update_attributes(user_params)
         flash[:notice] = 'Profile has been successfully updated'
-        redirect_to @user
+        redirect_to user_path(@user)
       else
         render 'edit'
       end
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @feed = @user.profile_feed.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def index

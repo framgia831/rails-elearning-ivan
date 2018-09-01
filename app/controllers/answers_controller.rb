@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
       #if all word has been answered, redirect to lesson show
       if @lesson.next_word.nil?
         @lesson.update(result: @lesson.lesson_results)
+        @lesson.lesson_activity(current_user)
         redirect_to lesson_url(@lesson.id)
       end
   end

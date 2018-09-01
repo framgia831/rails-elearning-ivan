@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   has_many :lessons, dependent: :destroy
+  has_many :activities, dependent: :destroy
   
   def downcase_email
     self.email = email.downcase
@@ -45,6 +46,17 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include?(user)
+  end
+
+  def profile_feed
+    Activity.where(user_id: id)
+  end
+
+  def dashboard_feed
+    following_ids = "SELECT followed_id FROM relationships
+                 WHERE  follower_id = :user_id"
+    Activity.where("user_id IN (#{ following_ids }) OR user_id = :user_id",
+    following_ids: following_ids, user_id: id)
   end
 
 end
