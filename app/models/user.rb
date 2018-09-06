@@ -47,11 +47,7 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
-
-  def profile_feed
-    Activity.where(user_id: id)
-  end
-
+  
   def dashboard_feed
     following_ids = "SELECT followed_id FROM relationships
                  WHERE  follower_id = :user_id"

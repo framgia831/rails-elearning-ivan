@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @feed = @user.profile_feed.order(created_at: :desc).page(params[:page]).per(6)
+    @feed = @user.activities.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def index
