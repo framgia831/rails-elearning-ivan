@@ -34,8 +34,8 @@
                     <h6>Activity Feed</h6>
                 </div>
                 <div class="card-body">
-                    <% @feed.each do |feed|%>
-                        <% if feed.activity_type == "Lesson" %>
+                    <% @activities.each do |activity|%>
+                        <% if activity.action_type == "Lesson" %>
                             <div class="container mt-2">
                                 <div class="media">
                                     <div class="media-left">
@@ -44,11 +44,11 @@
                                     <div class="media-body align-self-center">
                                         <%= link_to_if @user == current_user,"You", user_path(@user) do 
                                                                 link_to @user.name, user_path(@user) end %> learned 
-                                        <%= find_lesson(feed.activity_id).lesson_results %> of 
-                                        <%= lesson_category(feed.activity_id).words.size %> in 
-                                        <%= link_to lesson_category(feed.activity_id).title, lesson_path(find_lesson(feed.activity_id).id) %>
+                                        <%= activity.action.lesson_results %> of 
+                                        <%= activity.action.words.size %> in 
+                                        <%= link_to activity.action.category.title, lesson_path(activity.action.id) %>
                                         <div>
-                                            <small class="text-muted"><%= time_ago_in_words(feed.created_at) %></small>                                    
+                                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %></small>                                    
                                         </div>
                                     </div>
                                 </div>
@@ -62,9 +62,9 @@
                                     <div class="media-body align-self-center">
                                         <%= link_to_if @user == current_user, "You", user_path(@user) do 
                                             link_to @user.name, user_path(@user) end %> 
-                                            followed <%= link_to relationship(feed.activity_id).name, user_path(relationship(feed.activity_id).id) %>
+                                            followed <%= link_to relationship(activity.action.followed_id).name, user_path(relationship(activity.action.followed_id).id) %>
                                         <div>
-                                            <small class="text-muted"><%= time_ago_in_words(feed.created_at) %></small>
+                                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %></small>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="pagination justify-content-center">
-                        <%= paginate @feed, window: 1 %>
+                        <%= paginate @activities, window: 1 %>
                     </div>
                 </div>
             </div>

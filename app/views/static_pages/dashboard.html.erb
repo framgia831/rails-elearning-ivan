@@ -34,25 +34,25 @@
                     <h6>Activity Feed</h6>
                 </div>
                 <div class="card-body">
-                    <% @feed.each do |feed|%>
-                        <% if feed.activity_type == "Lesson" %>
+                    <% @feed.each do |activity|%>
+                        <% if activity.action_type == "Lesson" %>
                             <div class="container mt-2">
                                 <div class="media">
                                     <div class="media-left media-middle">
-                                        <% if feed.user == current_user %>
+                                        <% if activity.user == current_user %>
                                             <%= user_avatar(current_user, 'feed-avatar mr-3') %>
                                         <% else %>
-                                            <%= user_avatar(feed.user, 'feed-avatar mr-3') %>
+                                            <%= user_avatar(activity.user, 'feed-avatar mr-3') %>
                                         <% end %>
                                     </div>
                                     <div class="media-body align-self-center">
-                                        <%= link_to_if feed.user == current_user, "You", user_path(current_user) do
-                                            link_to feed.user.name, user_path(feed.user.id) end %> learned 
-                                        <%= find_lesson(feed.activity_id).lesson_results %> of 
-                                        <%= lesson_category(feed.activity_id).words.size %> in 
-                                        <%= link_to lesson_category(feed.activity_id).title, lesson_path(find_lesson(feed.activity_id).id) %>
+                                        <%= link_to_if activity.user == current_user, "You", user_path(current_user) do
+                                            link_to activity.user.name, user_path(activity.user.id) end %> learned 
+                                        <%= activity.action.lesson_results %> of 
+                                        <%= activity.action.words.size %> in 
+                                        <%= link_to activity.action.category.title, lesson_path(activity.action.id) %>
                                         <div>
-                                            <small class="text-muted"><%= time_ago_in_words(feed.created_at) %></small>
+                                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %></small>
                                         </div>                                    
                                     </div>
                                 </div>
@@ -61,18 +61,18 @@
                             <div class="container mt-2">
                                 <div class="media">
                                     <div class="media-left">
-                                        <% if feed.user == current_user %>
+                                        <% if activity.user == current_user %>
                                             <%= user_avatar(current_user, 'feed-avatar mr-3') %>
                                         <% else %>
-                                            <%= user_avatar(feed.user, 'feed-avatar mr-3') %>
+                                            <%= user_avatar(activity.user, 'feed-avatar mr-3') %>
                                         <% end %>
                                     </div>
                                     <div class="media-body align-self-center">
-                                        <%= link_to_if feed.user == current_user, "You", user_path(current_user) do
-                                            link_to feed.user.name, user_path(feed.user.id) end %> followed 
-                                        <%= link_to relationship(feed.activity_id).name, user_path(relationship(feed.activity_id).id) %>
+                                        <%= link_to_if activity.user == current_user, "You", user_path(current_user) do
+                                            link_to activity.user.name, user_path(activity.user.id) end %> followed 
+                                        <%= link_to relationship(activity.action.followed_id).name, user_path(relationship(activity.action.followed_id).id) %>
                                         <div>
-                                            <small class="text-muted"><%= time_ago_in_words(feed.created_at) %></small>
+                                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %></small>
                                         </div>
                                     </div>
                                 </div>
