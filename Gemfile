@@ -40,7 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem "font-awesome-rails"
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'faker', '1.7.3'
 gem 'kaminari'
 gem "omniauth-google-oauth2", "~> 0.2.1"
